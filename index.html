@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Reddit Content Search</title>
+
+  <!-- css -->
+  <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+  <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet" type="text/css">
+  <link href="/css/main.css" rel="stylesheet">
+
+  <!-- js -->
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
+  <script src="/js/search.js"></script>
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.2/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+  <div class="site-wrapper">
+    <div class="site-wrapper-inner">
+      <div class="cover-container">
+        <div class="inner cover">
+          <h1 class="cover-heading">Reddit Content Search</h1>
+          <p class="lead">In the input field, type a keyword, then click Search. The top 5 links to Reddit content containing that keyword will display.
+            <br />
+            <span class="note">Keyword defaults to "happy" when nothing entered.</span>
+          </p>
+          <form ng-app="redditApp" ng-controller="redditSearchCtrl" ng-submit="doSearch()">
+            <div align="center">
+              <div class="reddit-search">
+                <div class="col-sm-9">
+                  <input ng-model="wordSearch" type="text" placeholder="Enter keyword" class="form-control input-lg">
+                </div>
+                <div class="col-sm-3">
+                  <div class="form-group">
+                    <input type="submit" value="Search" class="btn btn-lg" data-toggle="modal" data-target="#results-modal">
+                    <div class="modal fade" id="results-modal" tabindex="-1" role="dialog" aria-labelledby="results-modal-label" aria-hidden="true">
+                      <div class="modal-dialog">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            <h4 class="modal-title" id="results-modal-label">Reddit Search Results</h4>
+                          </div>
+                          <div class="modal-body">
+                            <ul>
+                              <li ng-repeat="post in posts">
+                                <a href="{{ post.data.url }}" target="_blank">{{ post.data.title }}</a>
+                              </li>
+                            </ul>
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="mastfoot">
+          <div class="inner">
+            <p>BCarney &copy; 2015</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <!-- Include all compiled plugins (below), or include individual files as needed -->
+  <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+</body>
+
+</html>
